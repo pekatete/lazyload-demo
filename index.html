@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="description" content="Chromium lazyload bug report issue 1097493 demo" />
+  <meta charset="utf-8">
+  <title>Chromium lazyload bud demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="pekatete@icreateofx.co.uk">
+</head>
+
+<body>
+  
+<div class="container">
+<div style="width="1020px; border: thin solid #000000; padding: 2px"><img data-src="1020.webp 825.webp 550.webp" alt="1020 Container" loading="lazy" class="lazyload"></div></br/>
+<div style="widht="860px; border: thin solid #000000; padding: 2px"><img data-src="1020.webp 825.webp 550.webp" alt="860 Container" loading="lazy" class="lazyload"></div></br/>
+<div style="widht="500px; border: thin solid #000000; padding: 2px"><img data-src="1020.webp 825.webp 550.webp" alt="500 Container" loading="lazy" class="lazyload"></div></br/>
+</div>
+
+<script>
+  if ('loading' in HTMLImageElement.prototype) {
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    images.forEach(img => {
+      img.src = img.dataset.src;
+    });
+  } else {
+    // Dynamically import the LazySizes library
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js';
+    document.body.appendChild(script);
+  }
+</script>
+
+</body>
+</html>
